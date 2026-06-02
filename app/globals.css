@@ -1,0 +1,188 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ivory: #fbf8f1;
+  --champagne: #efe6d2;
+  --gold: #c2a24a;
+  --gold-deep: #a8842f;
+  --gold-soft: #e3d2a0;
+  --charcoal: #2a2620;
+  --taupe: #9a8e78;
+}
+
+html,
+body {
+  background: var(--ivory);
+  color: var(--charcoal);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: var(--font-body), system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+html[dir="rtl"] body {
+  font-family: var(--font-arabic-body), system-ui, sans-serif;
+}
+
+::selection {
+  background: rgba(194, 162, 74, 0.28);
+  color: var(--charcoal);
+}
+
+/* ─── Ivory marble — for door faces and surfaces ──────────────────────── */
+.marble-ivory {
+  background-image:
+    /* polish highlights */
+    radial-gradient(
+      ellipse 65% 45% at 25% 20%,
+      rgba(255, 255, 255, 0.95) 0%,
+      rgba(255, 255, 255, 0) 70%
+    ),
+    radial-gradient(
+      ellipse 55% 35% at 78% 80%,
+      rgba(255, 255, 255, 0.55) 0%,
+      rgba(255, 255, 255, 0) 65%
+    ),
+    /* faint gold-warm veins */
+      repeating-linear-gradient(
+        118deg,
+        rgba(194, 162, 74, 0) 0px,
+        rgba(194, 162, 74, 0) 90px,
+        rgba(194, 162, 74, 0.05) 91px,
+        rgba(194, 162, 74, 0) 93px
+      ),
+    repeating-linear-gradient(
+      58deg,
+      rgba(168, 132, 47, 0) 0px,
+      rgba(168, 132, 47, 0) 150px,
+      rgba(168, 132, 47, 0.035) 152px,
+      rgba(168, 132, 47, 0) 154px
+    ),
+    repeating-linear-gradient(
+      82deg,
+      rgba(154, 142, 120, 0) 0px,
+      rgba(154, 142, 120, 0) 220px,
+      rgba(154, 142, 120, 0.04) 222px,
+      rgba(154, 142, 120, 0) 224px
+    ),
+    /* base */ linear-gradient(150deg, #ffffff 0%, #fbf8f1 60%, #f1e9d4 100%);
+}
+
+/* Subtle paper / marble grain */
+.fine-grain {
+  position: relative;
+}
+.fine-grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(
+      rgba(42, 38, 32, 0.04) 1px,
+      transparent 1px
+    ),
+    radial-gradient(rgba(194, 162, 74, 0.04) 1px, transparent 1px);
+  background-size: 3px 3px, 7px 7px;
+  background-position: 0 0, 1px 2px;
+  mix-blend-mode: multiply;
+  opacity: 0.35;
+  border-radius: inherit;
+}
+
+/* ─── Gold foil text effect ─────────────────────────────────────────── */
+.gold-foil {
+  background: linear-gradient(
+    100deg,
+    #8a6420 0%,
+    #c2a24a 22%,
+    #efd58a 42%,
+    #f5e3a8 50%,
+    #c2a24a 70%,
+    #8a6420 100%
+  );
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 7s linear infinite;
+}
+
+/* Gold seal — radial gradient mimicking gilded wax */
+.gold-seal {
+  background:
+    radial-gradient(
+      circle at 32% 28%,
+      rgba(255, 245, 210, 0.85) 0%,
+      rgba(255, 245, 210, 0) 38%
+    ),
+    radial-gradient(
+      circle at 68% 78%,
+      rgba(120, 90, 30, 0.55) 0%,
+      rgba(120, 90, 30, 0) 50%
+    ),
+    radial-gradient(circle at 50% 50%, #e3c97a 0%, #c2a24a 60%, #8a6420 100%);
+}
+
+/* Hairline gold filigree frame — used inside marble surfaces */
+.gold-frame {
+  position: relative;
+}
+.gold-frame::before,
+.gold-frame::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+.gold-frame::before {
+  inset: 18px;
+  border: 1px solid rgba(194, 162, 74, 0.55);
+}
+.gold-frame::after {
+  inset: 26px;
+  border: 1px solid rgba(194, 162, 74, 0.22);
+}
+
+/* Dust motes / sparkles utility */
+.sparkle {
+  background:
+    radial-gradient(circle, rgba(255, 245, 210, 0.95) 0%, rgba(255, 245, 210, 0) 60%),
+    radial-gradient(circle, rgba(194, 162, 74, 0.7) 0%, rgba(194, 162, 74, 0) 70%);
+  filter: blur(0.5px);
+}
+
+/* Smooth fonts for the script display */
+.font-script {
+  font-feature-settings: "liga", "dlig", "calt", "ss01";
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--ivory);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(194, 162, 74, 0.25);
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(194, 162, 74, 0.5);
+}
